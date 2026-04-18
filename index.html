@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Popcaaz Electrical Online Shop</title>
+    <style>
+      :root {
+        --bg: #071b2a;
+        --surface: #112f45;
+        --surface-soft: #1f4a67;
+        --text: #f4f9ff;
+        --muted: #a8c1d9;
+        --accent: #f4c642;
+        --accent-contrast: #ffb84d;
+        --border: rgba(255, 255, 255, 0.08);
+        --radius: 24px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: linear-gradient(180deg, #0a1f33 0%, #071823 100%);
+        color: var(--text);
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: radial-gradient(circle at top left, rgba(244, 198, 66, 0.18), transparent 20%),
+          radial-gradient(circle at bottom right, rgba(88, 204, 255, 0.08), transparent 18%);
+        pointer-events: none;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .page {
+        position: relative;
+        z-index: 1;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1.5rem 1.5rem 3rem;
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1rem 0;
+      }
+
+      .brand {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+      }
+
+      .brand-title {
+        font-size: clamp(2rem, 3vw, 3rem);
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        margin: 0;
+      }
+
+      .brand-subtitle {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      nav {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+      }
+
+      nav a {
+        font-size: 0.95rem;
+        color: var(--muted);
+        transition: color 0.2s ease;
+      }
+
+      nav a:hover {
+        color: var(--accent);
+      }
+
+      .hero {
+        margin-top: 1rem;
+        padding: 2rem;
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border);
+        display: grid;
+        grid-template-columns: 1fr 360px;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      .hero-copy h1 {
+        margin: 0;
+        font-size: clamp(2.5rem, 4vw, 4.25rem);
+        line-height: 0.95;
+      }
+
+      .hero-copy p {
+        margin: 1.5rem 0;
+        max-width: 58ch;
+        color: var(--muted);
+        line-height: 1.8;
+        font-size: 1rem;
+      }
+
+      .hero-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .button-primary,
+      .button-secondary {
+        border: none;
+        border-radius: 999px;
+        padding: 0.95rem 1.7rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.2s ease, background-color 0.2s ease;
+      }
+
+      .button-primary {
+        background: linear-gradient(135deg, var(--accent), var(--accent-contrast));
+        color: #071823;
+      }
+
+      .button-secondary {
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--text);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+      }
+
+      .button-primary:hover,
+      .button-secondary:hover {
+        transform: translateY(-1px);
+      }
+
+      .hero-visual {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .hero-card {
+        padding: 1.4rem;
+        border-radius: 1.75rem;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .hero-card h3 {
+        margin: 0 0 0.8rem;
+        font-size: 1.15rem;
+      }
+
+      .hero-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .section-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 1rem;
+        margin: 3rem 0 1rem;
+      }
+
+      .section-title h2 {
+        margin: 0;
+        font-size: clamp(1.65rem, 2vw, 2rem);
+      }
+
+      .section-title a {
+        color: var(--accent);
+        font-weight: 600;
+      }
+
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.5rem;
+      }
+
+      .product-card {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid var(--border);
+        border-radius: 1.5rem;
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .product-card h3 {
+        margin: 0;
+        font-size: 1.2rem;
+      }
+
+      .product-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.7;
+        flex: 1;
+      }
+
+      .price {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: var(--accent);
+      }
+
+      .category {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 0.8rem;
+        border-radius: 999px;
+        background: rgba(244, 198, 66, 0.12);
+        color: var(--accent);
+        font-size: 0.9rem;
+        font-weight: 700;
+      }
+
+      .contact-card {
+        margin-top: 2rem;
+        padding: 2rem;
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .contact-card h3 {
+        margin-top: 0;
+      }
+
+      .contact-card p,
+      .contact-card a {
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .contact-card a {
+        display: inline-block;
+        margin-top: 0.75rem;
+        color: var(--accent);
+      }
+
+      footer {
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      @media (max-width: 920px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+
+        .product-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 680px) {
+        header,
+        .section-title,
+        footer {
+          flex-direction: column;
+          align-items: flex-start;
+          text-align: left;
+        }
+
+        header {
+          gap: 0.75rem;
+        }
+
+        nav {
+          justify-content: flex-start;
+        }
+
+        .product-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <div class="brand">
+          <h1 class="brand-title">Popcaaz Electrical Online Shop</h1>
+          <p class="brand-subtitle">Kenya’s trusted source for cables, sockets, switches, bulbs and more.</p>
+        </div>
+        <nav>
+          <a href="#home">Home</a>
+          <a href="#products">Products</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </header>
+
+      <section id="home" class="hero">
+        <div class="hero-copy">
+          <p class="category">Electrical Supplies</p>
+          <h1>Fast, modern electrical products for every project.</h1>
+          <p>Shop premium cables, sockets, switches, bulbs, bulb holders and essential equipment at competitive Kenyan Shilling prices. Built for safety, quality, and quick delivery.</p>
+          <div class="hero-buttons">
+            <a href="#products" class="button-primary">Browse Products</a>
+            <a href="#contact" class="button-secondary">Get in Touch</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-card">
+            <h3>Quality Materials</h3>
+            <p>We source the best electrical components to help electricians, builders, and homeowners complete projects with confidence.</p>
+          </div>
+          <div class="hero-card">
+            <h3>Clear Pricing</h3>
+            <p>Every product shows an estimated price in Kenyan Shillings so you can plan your purchase quickly and accurately.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="products">
+        <div class="section-title">
+          <h2>Popular Electrical Products</h2>
+          <a href="#contact">Request a quote</a>
+        </div>
+
+        <div class="product-grid">
+          <article class="product-card">
+            <span class="category">Cables</span>
+            <h3>Multi-Core Power Cable</h3>
+            <p>Durable PVC insulated cable suitable for home wiring and light commercial installations.</p>
+            <div class="price">KES 480 / meter</div>
+          </article>
+
+          <article class="product-card">
+            <span class="category">Sockets</span>
+            <h3>Three-Pin Wall Socket</h3>
+            <p>High-quality polished finish socket with earth connection for secure plug fit and reliable power.</p>
+            <div class="price">KES 260</div>
+          </article>
+
+          <article class="product-card">
+            <span class="category">Switches</span>
+            <h3>Single Pole Switch</h3>
+            <p>Premium switch with smooth operation and stylish panel design for modern interiors.</p>
+            <div class="price">KES 190</div>
+          </article>
+
+          <article class="product-card">
+            <span class="category">Bulbs</span>
+            <h3>LED Bulb 9W</h3>
+            <p>Energy-saving LED bulb with bright, warm light ideal for homes and offices.</p>
+            <div class="price">KES 210</div>
+          </article>
+
+          <article class="product-card">
+            <span class="category">Bulb Holders</span>
+            <h3>Ceramic Bulb Holder</h3>
+            <p>Hard-wearing holder designed for both indoor and workshop use, with secure screw terminals.</p>
+            <div class="price">KES 120</div>
+          </article>
+
+          <article class="product-card">
+            <span class="category">Equipment</span>
+            <h3>Insulated Tool Kit</h3>
+            <p>Essential electrician kit with pliers, screwdrivers, and wire strippers for safe installations.</p>
+            <div class="price">KES 1,250</div>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact" class="contact-card">
+        <h3>Contact Popcaaz Electrical</h3>
+        <p>Have a project to complete or need help choosing the right product? Our team is ready to assist you with product recommendations and delivery details.</p>
+        <p>Email: <a href="mailto:support@popcaaz.co.ke">support@popcaaz.co.ke</a></p>
+        <p>Phone: <a href="tel:+254703710225">+254 703710225</a></p>
+      </section>
+
+      <footer>
+        <div>© 2026 Popcaaz Electrical Online Shop</div>
+        <div class="footer-links">
+          <a href="mailto:support@popcaaz.co.ke">support@popcaaz.co.ke</a>
+          <a href="#">Terms</a>
+          <a href="#">Privacy</a>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
